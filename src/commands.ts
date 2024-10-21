@@ -27,3 +27,16 @@ export async function details(store: Store<RecipeType[]>, args: string[]) {
   console.log('Details of recipe:');
   console.log(formatted);
 }
+
+export async function create(store: Store<RecipeType[]>, args: string[]) {
+  if (args.length === 0) {
+    throw new AppError('Please provide a recipe name.');
+  }
+  const createdRecipe: CreateRecipeType = { name: args.join() };
+  const recipe = new Recipe(store);
+  const recipes = await recipe.readAll();
+  const id = recipes.length + 1;
+  const formatted = `- [${id}] ${createdRecipe.name}`;
+  console.log('Details of recipe:');
+  console.log(formatted);
+}

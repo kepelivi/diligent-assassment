@@ -5,6 +5,8 @@ export type RecipeType = {
   name: string
 }
 
+export type CreateRecipeType = Omit<RecipeType, "id">;
+
 export class Recipe {
   private store;
 
